@@ -28,16 +28,10 @@ def test_consent_user_information(client):
 
 
 @pytest.mark.django_db
-def test_consent_user_information_login(client, django_user_model):
+def test_consent_user_information_login(client, user, password):
     fake = Faker()
-    username = fake.user_name()
-    password = fake.password()
-    user = django_user_model.objects.create(username=username)
 
-    user.set_password(password)
-    user.save()
-
-    client.login(username=username, password=password)
+    client.login(username=user.username, password=password)
     client.post(reverse('home'), {'mail': fake.email()})
 
     consent_user_information = ConsentUserInformation.objects.last()
@@ -50,17 +44,8 @@ def test_consent_user_information_login(client, django_user_model):
 
 
 @pytest.mark.django_db
-def test_consent_user_information_mail(client, django_user_model):
-    fake = Faker()
-    username = fake.user_name()
-    password = fake.password()
-    mail = fake.email()
-    user = django_user_model.objects.create(username=username, email=mail)
-
-    user.set_password(password)
-    user.save()
-
-    client.get(reverse('simple'), {'mail': mail})
+def test_consent_user_information_mail(client, user):
+    client.get(reverse('simple'), {'mail': user.email})
 
     consent_user_information = ConsentUserInformation.objects.last()
 
@@ -72,16 +57,7 @@ def test_consent_user_information_mail(client, django_user_model):
 
 
 @pytest.mark.django_db
-def test_consent_user_information_user(client, django_user_model):
-    fake = Faker()
-    username = fake.user_name()
-    password = fake.password()
-    mail = fake.email()
-    user = django_user_model.objects.create(username=username, email=mail)
-
-    user.set_password(password)
-    user.save()
-
+def test_consent_user_information_user(client, user):
     client.get(reverse('simple'), {'user': user.pk})
 
     consent_user_information = ConsentUserInformation.objects.last()
