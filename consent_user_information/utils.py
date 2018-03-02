@@ -11,7 +11,7 @@ from consent_user_information.compat import is_authenticated
 logger = logging.getLogger(__name__)
 
 
-def create_user_consent_information(request, mail=None):
+def create_user_consent_information(request, user=None, mail=None):
     """To create an user consent information"""
     if not hasattr(request, 'user_agent'):
         raise ValueError('Check if the middleware is present')
@@ -27,7 +27,9 @@ def create_user_consent_information(request, mail=None):
     else:
         data['ip'] = client_ip
 
-    if mail:
+    if user:
+        data['user'] = user
+    elif mail:
         data['user'] = get_user_model().objects.get(email=mail)
     else:
         if is_authenticated(request.user):

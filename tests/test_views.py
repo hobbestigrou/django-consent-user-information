@@ -69,3 +69,25 @@ def test_consent_user_information_mail(client, django_user_model):
     assert consent_user_information.ip == '127.0.0.1'
     assert consent_user_information.device == 'Other'
     assert consent_user_information.browser == 'Other'
+
+
+@pytest.mark.django_db
+def test_consent_user_information_user(client, django_user_model):
+    fake = Faker()
+    username = fake.user_name()
+    password = fake.password()
+    mail = fake.email()
+    user = django_user_model.objects.create(username=username, email=mail)
+
+    user.set_password(password)
+    user.save()
+
+    client.get(reverse('simple'), {'user': user.pk})
+
+    consent_user_information = ConsentUserInformation.objects.last()
+
+    assert ConsentUserInformation.objects.count() == 1
+    assert consent_user_information.user == user
+    assert consent_user_information.ip == '127.0.0.1'
+    assert consent_user_information.device == 'Other'
+    assert consent_user_information.browser == 'Other'
