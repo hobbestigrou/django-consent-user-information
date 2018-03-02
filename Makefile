@@ -1,5 +1,4 @@
 clean:
-	find . -name *__pycache__ -type d -delete
 	find . -name \*.pyc -delete
 
 migrate:

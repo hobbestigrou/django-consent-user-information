@@ -34,7 +34,7 @@ class SimpleView(TemplateView):
     def get(self, request, *args, **kwargs):
         """Get the mail from url"""
         mail = request.GET['mail']
-        create_user_consent_information(request, mail)
+        create_user_consent_information(request, mail=mail)
 
         return super(SimpleView, self).get(request, *args, **kwargs)
 
