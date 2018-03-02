@@ -2,7 +2,7 @@
 django-consent-user-information
 =============================
 
-.. image:: https://img.shields.io/pypi/v/pymarvelsimple.svg
+.. image:: https://img.shields.io/pypi/v/django-consent-user-information.svg
    :alt: Latest release on the Python Cheeseshop (PyPI)
    :target: https://pypi.python.org/pypi/django-consent-user-information
 
