@@ -11,7 +11,7 @@ class ConsentUserInformationAdmin(admin.ModelAdmin):
     readonly_fields = ('user', 'ip', 'device', 'browser', 'created_at')
     search_fields = ['user__email', 'user__first_name', 'user__last_name']
 
-    def has_add_permissions(self, request):
+    def has_add_permission(self, request):
         """Can't add a new entry"""
         return False
 
