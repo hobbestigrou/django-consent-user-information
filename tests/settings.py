@@ -50,11 +50,13 @@ if django.VERSION >= (1, 10):
     MIDDLEWARE = (
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django_user_agents.middleware.UserAgentMiddleware'
+        'django_user_agents.middleware.UserAgentMiddleware',
+        'consent_user_information.middleware.marketing'
     )
 else:
     MIDDLEWARE_CLASSES = (
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django_user_agents.middleware.UserAgentMiddleware'
+        'django_user_agents.middleware.UserAgentMiddleware',
+        'consent_user_information.middleware.Marketing'
     )
