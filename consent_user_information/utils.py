@@ -19,8 +19,11 @@ def create_user_consent_information(request, user=None, mail=None):
 
     data = {
         'device': request.user_agent.device.family,
-        'browser': request.user_agent.browser.family
     }
+    version = request.user_agent.browser.version_string
+    data['browser'] = request.user_agent.browser.family + ' ' + version \
+        if version else request.user_agent.browser.family
+
     client_ip, is_routable = get_client_ip(request)
 
     if client_ip is None:
