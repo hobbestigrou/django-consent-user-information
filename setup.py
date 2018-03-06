@@ -12,7 +12,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-consent-user-information',
-    version='0.3.dev0',
+    version='0.3',
     description='To store information about the user.',
     long_description='''
 To store information about the user like the browser and device.
