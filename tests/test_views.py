@@ -26,6 +26,7 @@ def test_consent_user_information(client):
     assert consent_user_information.ip == '127.0.0.1'
     assert consent_user_information.device == 'Other'
     assert consent_user_information.browser == 'Other'
+    assert consent_user_information.os == 'Other'
 
 
 @pytest.mark.django_db
@@ -42,6 +43,7 @@ def test_consent_user_information_login(client, user, password):
     assert consent_user_information.ip == '127.0.0.1'
     assert consent_user_information.device == 'Other'
     assert consent_user_information.browser == 'Other'
+    assert consent_user_information.os == 'Other'
 
 
 @pytest.mark.django_db
@@ -55,6 +57,7 @@ def test_consent_user_information_mail(client, user):
     assert consent_user_information.ip == '127.0.0.1'
     assert consent_user_information.device == 'Other'
     assert consent_user_information.browser == 'Other'
+    assert consent_user_information.os == 'Other'
 
 
 @pytest.mark.django_db
@@ -68,6 +71,7 @@ def test_consent_user_information_user(client, user):
     assert consent_user_information.ip == '127.0.0.1'
     assert consent_user_information.device == 'Other'
     assert consent_user_information.browser == 'Other'
+    assert consent_user_information.os == 'Other'
 
 
 @pytest.mark.django_db

@@ -11,6 +11,7 @@ class AbstractConsentUserInformation(models.Model):
     ip = models.GenericIPAddressField(null=True, blank=True)
     device = models.CharField(max_length=100, blank=True)
     browser = models.CharField(max_length=255, blank=True)
+    os = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
