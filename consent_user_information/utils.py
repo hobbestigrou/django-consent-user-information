@@ -19,13 +19,15 @@ def create_user_consent_information(request, user=None, mail=None):
 
     data = {
         'device': request.user_agent.device.family,
+        'browser': request.user_agent.browser.family,
+        'os': request.user_agent.os.family
     }
-    version = request.user_agent.browser.version_string
-    data['browser'] = request.user_agent.browser.family + ' ' + version \
-        if version else request.user_agent.browser.family
-    version_os = request.user_agent.os.version_string
-    data['os'] = request.user_agent.os.family + ' ' + version_os \
-        if version_os else request.user_agent.os.family
+
+    if request.user_agent.browser.version_string:
+        data['browser'] += ' ' + request.user_agent.browser.version_string
+
+    if request.user_agent.os.version_string:
+        data['os'] += ' ' + request.user_agent.os.version_string
 
     client_ip, is_routable = get_client_ip(request)
 
